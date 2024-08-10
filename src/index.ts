@@ -88,7 +88,7 @@ const run = async () => {
 
   createBullBoard({
     queues,
-    serverAdapter: serverAdapter as any,
+    serverAdapter: serverAdapter,
   });
 
   app.use('/bull', ensureLoggedIn({ redirectTo: '/bull/login' }), serverAdapter.getRouter());
