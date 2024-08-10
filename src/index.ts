@@ -16,6 +16,8 @@ const redisOptions = {
   password: process.env.REDIS_PASSWORD || '',
 };
 
+const bullPrefix = process.env.BULL_PREFIX || 'bull';
+
 const redisClient = new ioredis(redisOptions);
 const redisSubscriber = new ioredis(redisOptions);
 const redisBClient = new ioredis(redisOptions);
@@ -34,7 +36,7 @@ const connectQueue = (name: string) => new Queue(name, { createClient: (type) =>
 const run = async () => {
   passport.use(
     new LocalStrategy(function (username: string, password: string, cb: any) {
-      if (username === process.env.USER || 'bull' && password === process.env.PASSWORD || 'board') {
+      if (username === process.env.BASIC_AUTH_USERNAME || 'admin' && password === process.env.BASIC_AUTH_PASSWORD || 'bull') {
         return cb(null, { user: 'bull-board' });
       }
       return cb(null, false);
@@ -71,11 +73,11 @@ const run = async () => {
     }
   );
 
-  const queueKeys = await redisClient.keys('bull:*:id');
+  const queueKeys = await redisClient.keys(`${bullPrefix}:*:id`);
   const queues = [];
 
   for (const queue of queueKeys) {
-    const queueName = queue.replace('bull:', '').replace(':id', '');
+    const queueName = queue.replace(`${bullPrefix}:`, '').replace(':id', '');
     const bullQueue = connectQueue(queueName);
     queues.push(new BullAdapter(bullQueue));
   }
@@ -95,7 +97,7 @@ const run = async () => {
     res.redirect('/bull');
   });
 
-  app.listen(3001);
+  app.listen(process.env.PORT || 3000);
 };
 
 run().catch((e) => console.error(e));

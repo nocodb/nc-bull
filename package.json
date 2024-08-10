@@ -7,7 +7,8 @@
   "main": "index.js",
   "scripts": {
     "start": "ts-node-dev index.ts",
-    "build": "tsc"
+    "build": "tsc",
+    "build:docker": "tsc && docker build -t nc-bull-board ."
   },
   "dependencies": {
     "@bull-board/api": "^5.17.1",
