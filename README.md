@@ -15,7 +15,8 @@ Provide the following environment variables:
 
 It will try to detect all the queues using bull prefix and provide the status of each queue.
 
-## Development
+
+## Development
 
 ```bash
 pnpm install
