@@ -36,7 +36,7 @@ const connectQueue = (name: string) => new Queue(name, { createClient: (type) =>
 const run = async () => {
   passport.use(
     new LocalStrategy(function (username: string, password: string, cb: any) {
-      if (username === process.env.BASIC_AUTH_USERNAME || 'admin' && password === process.env.BASIC_AUTH_PASSWORD || 'bull') {
+      if (username === (process.env.BASIC_AUTH_USERNAME || 'admin') && password === (process.env.BASIC_AUTH_PASSWORD || 'bull')) {
         return cb(null, { user: 'bull-board' });
       }
       return cb(null, false);
