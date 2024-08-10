@@ -52,9 +52,9 @@ const run = async () => {
   });
 
   const app = express();
-  app.set('views', __dirname + '/views');
+  app.set('views', 'public/views');
   app.set('view engine', 'ejs');
-  app.use(session({ secret: 'nc-secretB!^#', saveUninitialized: true, resave: true }));
+  app.use(session({ secret: process.env.SESSION_SECRET || 'my-secret-key', saveUninitialized: true, resave: true }));
   app.use(bodyParser.urlencoded({ extended: false }));
   app.use(passport.initialize({}));
   app.use(passport.session({
@@ -97,7 +97,9 @@ const run = async () => {
     res.redirect('/bull');
   });
 
-  app.listen(process.env.PORT || 3000);
+  app.listen(process.env.PORT || 3000, () => {
+    console.log(`Server started on http://localhost:${process.env.PORT || 3000}`);
+  });
 };
 
 run().catch((e) => console.error(e));

@@ -3,6 +3,7 @@ WORKDIR /usr/src/app
 
 COPY ./dist ./
 COPY ./package.json ./
+COPY ./public ./public
 
 RUN npm install
 
