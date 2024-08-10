@@ -5,6 +5,10 @@
   "license": "ISC",
   "author": "mertmit",
   "main": "index.js",
+  "engines": {
+    "node": ">=20",
+    "npm": ">=10.8.0"
+  },
   "scripts": {
     "start": "ts-node-dev index.ts",
     "build": "tsc",

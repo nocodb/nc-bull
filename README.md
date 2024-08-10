@@ -19,12 +19,12 @@ It will try to detect all the queues using bull prefix and provide the status of
 ## Development
 
 ```bash
-pnpm install
-pnpm start
+npm install
+npm run start
 ```
 
 ## Docker
 
 ```bash
-pnpm build:docker
+npm run build:docker
 ```
