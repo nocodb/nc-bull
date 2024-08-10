@@ -7,6 +7,7 @@ This provides a simple way to monitor the status of a Bull queue in NocoDB. It u
 Provide the following environment variables:
 - `REDIS_HOST`: The host of the Redis server
 - `REDIS_PORT`: The port of the Redis server
+- `REDIS_DB`: The database of the Redis server -- optional
 - `REDIS_PASSWORD`: The password of the Redis server -- optional
 - `SESSION_SECRET`: The secret for the session -- default is `my-secret-key`
 - `BASIC_AUTH_USERNAME`: The username for basic auth -- default is `admin`

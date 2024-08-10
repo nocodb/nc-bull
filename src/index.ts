@@ -13,6 +13,7 @@ import { Strategy as LocalStrategy } from 'passport-local';
 const redisOptions = {
   port: process.env.REDIS_PORT ? parseInt(process.env.REDIS_PORT) : 6379,
   host: process.env.REDIS_HOST || 'localhost',
+  db: process.env.REDIS_DB ? parseInt(process.env.REDIS_DB) : undefined,
   password: process.env.REDIS_PASSWORD || '',
 };
 
